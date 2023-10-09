@@ -22,16 +22,6 @@ class ProjetRepository extends ServiceEntityRepository
         parent::__construct($registry, Projet::class);
     }
 
-    public function add(Projet $projet, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($projet);
-
-        if($flush) {
-            $projet->setDCreation(new DateTime());
-            $this->getEntityManager()->flush();
-        }
-    }
-
 
 //    /**
 //     * @return Projet[] Returns an array of Projet objects

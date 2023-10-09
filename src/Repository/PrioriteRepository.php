@@ -21,12 +21,6 @@ class PrioriteRepository extends ServiceEntityRepository
         parent::__construct($registry, Priorite::class);
     }
 
-    public function findAll(): array
-    {
-        return $this->createQueryBuilder('prio')
-            ->getQuery()
-            ->getResult();
-    }
 
 //    /**
 //     * @return Priorite[] Returns an array of Priorite objects
