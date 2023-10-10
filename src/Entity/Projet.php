@@ -34,8 +34,8 @@ class Projet
     private $priorite;
 
     #[ORM\ManyToOne(inversedBy: 'projets', targetEntity: Utilisateur::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Utilisateur $utilisateur_id = null;
+    #[ORM\JoinColumn(nullable: false, referencedColumnName:'id')]
+    private ?Utilisateur $utilisateur_id;
 
     public function __construct()
     {
