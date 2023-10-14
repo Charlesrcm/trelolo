@@ -35,7 +35,7 @@ class Projet
 
     #[ORM\ManyToOne(inversedBy: 'projets', targetEntity: Utilisateur::class)]
     #[ORM\JoinColumn(nullable: false, referencedColumnName:'id')]
-    private ?Utilisateur $utilisateur_id;
+    private ?Utilisateur $utilisateur = null;
 
     public function __construct()
     {
@@ -133,12 +133,12 @@ class Projet
 
     public function getUtilisateurId(): ?Utilisateur
     {
-        return $this->utilisateur_id;
+        return $this->utilisateur;
     }
 
     public function setUtilisateurId(?Utilisateur $utilisateur_id): static
     {
-        $this->utilisateur_id = $utilisateur_id;
+        $this->utilisateur = $utilisateur_id;
 
         return $this;
     }
