@@ -45,7 +45,7 @@ class ProjetCrudController extends AbstractCrudController
     {
         if(!$entityInstance instanceof Projet) return; // condition de vérification de l'objet envoyé
 
-        $entityInstance->setUtilisateurId($this->getUser()); // je passe en paramètre l'objet Utilisateur car il récupère l'id
+        $entityInstance->setUtilisateur($this->getUser()); // je passe en paramètre l'objet Utilisateur car il récupère l'id
 
         $entityInstance->setDCreation(new DateTime);
 

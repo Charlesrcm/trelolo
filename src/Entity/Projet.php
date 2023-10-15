@@ -102,18 +102,6 @@ class Projet
         return $this;
     }
 
-    // public function getAdmin(): ?Admin
-    // {
-    //     return $this->admin;
-    // }
-
-    // public function setAdmin(?Admin $admin): static
-    // {
-    //     $this->admin = $admin;
-
-    //     return $this;
-    // }
-
     public function getPriorite(): ?Priorite
     {
         return $this->priorite;
@@ -131,12 +119,12 @@ class Projet
         return $this->nom_projet;
     }
 
-    public function getUtilisateurId(): ?Utilisateur
+    public function getUtilisateur(): ?Utilisateur
     {
         return $this->utilisateur;
     }
 
-    public function setUtilisateurId(?Utilisateur $utilisateur_id): static
+    public function setUtilisateur(?Utilisateur $utilisateur_id): static
     {
         $this->utilisateur = $utilisateur_id;
 

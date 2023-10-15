@@ -20,37 +20,42 @@
     <body>
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
             <div class="container-fluid">
+                <h1 class="text-light">TRELOLO</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             {% if app.user %}
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-expand-lg bg-dark">
-                        <li class="nav-item"><a class="nav-link" href="{{ path('app_home')}}">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/projet">Projet</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Bienvenue {{ app.user.nom }}</a></li>
                         {% if (app.user.roles[0] is same as("ROLE_ADMIN")) %}
-                        <li class="nav-item"><a class="nav-link" href="/admin">Projet</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin">Dashboard</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                        <li class="nav-item d-flex justify-content-end"><a class="nav-link" href="/logout">Se déconnecter</a></li>
                     </ul>
                 </div>
-                <ul class="nav navbar-expand-lg bg-dark">
-                    <li class="nav-item"><a class="nav-link" href="">Bienvenue {{ app.user.nom }}</a></li>
-                    <li class="nav-item d-flex justify-content-end"><a class="nav-link" href="/logout">Se déconnecter</a></li>
-                </ul>
+
             {% endif %}
+
             {% if app.user is null %}
             <ul class="nav navbar-expand-lg bg-dark">
                 <li class="nav-item d-flex justify-content-end"><a class="nav-link" href="/login">Se connecter</a></li>
             </ul>
             {% endif %}
+
             </div>
         </nav>
+
         <section class="container mt-3">
         {% block body %}{% endblock %}
         </section>
+        
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
      crossorigin="anonymous">
     </script>
+    <script src="{{ asset('JS/dragDrop.js') }}"></script>
 </html>

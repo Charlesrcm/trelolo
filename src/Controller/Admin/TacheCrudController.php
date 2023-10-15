@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tache;
 use App\Entity\Utilisateur;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -24,11 +25,9 @@ class TacheCrudController extends AbstractCrudController
             yield TextField::new('description','Description de la tache'),
             yield AssociationField::new('etat','Etat de la tache'),
             yield AssociationField::new('projet', 'Associer à quel projet ?'),
-            // yield AssociationField::new('utilisateur_id', 'Choisir un utilisateur')
-
-            // dd(fn (QueryBuilder $queryBuilder) => $queryBuilder->getEntityManager()->getRepository(Utilisateur::class)->findUser()),
-            yield AssociationField::new('utilisateur_id', 'Choisir un utilisateur')->setQueryBuilder(
-            fn (QueryBuilder $queryBuilder) => $queryBuilder->getEntityManager()->getRepository(Utilisateur::class)->findUser()
+            yield AssociationField::new('utilisateur', 'Choisir un utilisateur')
+                ->setQueryBuilder(
+            fn (QueryBuilder $QueryBuilder) => $QueryBuilder->getEntityManager()->getRepository(Utilisateur::class)->findOneBySomeField()
             )
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Utilisateur;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -19,26 +20,26 @@ class UtilisateurCrudController extends AbstractCrudController
     {
         return Utilisateur::class;
     }
-
-    // public function configureActions(Actions $actions): Actions
-    // {
-    //     return $actions
-    //         // ->remove(Crud::PAGE_INDEX, Action::NEW)
-    //         // ->remove(Crud::PAGE_INDEX, Action::EDIT);
-    //         // ->remove(Crud::PAGE_INDEX, Action::DELETE)
-    //         // ->remove(Crud::PAGE_DETAIL, Action::EDIT);
-
-    // }
-
     
     public function configureFields(string $pageName): iterable
     {
         return [
             yield EmailField::new('email'),
             yield TextField::new('nom'),
-            // yield ChoiceField::new('roles'),
-            yield BooleanField::new('is_admin')
         ];
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if(!$entityInstance instanceof Utilisateur) return; // contrôle de l'envoi du formulaire
+
+        $entityInstance->setIsAdmin(0); // faux de base car l'admin ne créé que des utilisateur avec le role -> user
+
+        // si l'utilisateur créé n'est pas séléctionn
+        if($entityInstance->isIsAdmin() === false)
+            $entityInstance->setRoles(["ROLE_USER"]);
+        
+        parent::persistEntity($entityManager, $entityInstance);
     }
     
 }

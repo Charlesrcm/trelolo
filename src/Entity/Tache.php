@@ -29,7 +29,24 @@ class Tache
 
     #[ORM\ManyToOne(inversedBy: 'taches')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Utilisateur $utilisateur_id = null;
+    private ?Utilisateur $utilisateur = null;
+
+    public function __toString()
+    {
+        return $this->titre;
+    }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $utilisateur_id): static
+    {
+        $this->utilisateur = $utilisateur_id;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -80,23 +97,6 @@ class Tache
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->titre;
-    }
-
-    public function getUtilisateurId(): ?Utilisateur
-    {
-        return $this->utilisateur_id;
-    }
-
-    public function setUtilisateurId(?Utilisateur $utilisateur_id): static
-    {
-        $this->utilisateur_id = $utilisateur_id;
 
         return $this;
     }

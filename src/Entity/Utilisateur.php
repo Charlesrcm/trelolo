@@ -37,8 +37,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur_id', targetEntity: Tache::class)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Tache::class)]
     private Collection $taches;
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Projet::class)]
+    private Collection $projets;
 
     public function __construct()
     {
@@ -80,6 +83,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         
         // guarantee every user at least has ROLE_USER
+        $roles[] = "ROLE_USER";
         // if($roles === 'ROLE_USER')
         //     $roles[] = 'ROLE_USER';
         // else $roles[] = 'ROLE_ADMIN';
@@ -151,16 +155,46 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Tache>
      */
+    public function getProjets(): Collection
+    {
+        return $this->projets;
+    }
+
+    public function addProj(Tache $proj): static
+    {
+        if (!$this->projets->contains($proj)) {
+            $this->projets->add($proj);
+            $proj->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProj(Tache $proj): static
+    {
+        if ($this->projets->removeElement($proj)) {
+            // set the owning side to null (unless already changed)
+            if ($proj->getUtilisateur() === $this) {
+                $proj->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tache>
+     */
     public function getTaches(): Collection
     {
         return $this->taches;
     }
-
+    
     public function addTach(Tache $tach): static
     {
         if (!$this->taches->contains($tach)) {
             $this->taches->add($tach);
-            $tach->setUtilisateurId($this);
+            $tach->setUtilisateur($this);
         }
 
         return $this;
@@ -170,8 +204,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->taches->removeElement($tach)) {
             // set the owning side to null (unless already changed)
-            if ($tach->getUtilisateurId() === $this) {
-                $tach->setUtilisateurId(null);
+            if ($tach->getUtilisateur() === $this) {
+                $tach->setUtilisateur(null);
             }
         }
 

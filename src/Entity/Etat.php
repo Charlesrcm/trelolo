@@ -16,8 +16,11 @@ class Etat
     #[ORM\Column(length: 20)]
     private ?string $libelle = null;
 
-    #[ORM\OneToOne(mappedBy: 'etat', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'etat', targetEntity:Tache::class, cascade: ['persist', 'remove'])]
     private ?Tache $tache = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $color = null;
 
     public function getId(): ?int
     {
@@ -56,5 +59,17 @@ class Etat
     public function __toString()
     {
         return $this->libelle;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): static
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }
