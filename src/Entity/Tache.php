@@ -20,7 +20,7 @@ class Tache
     #[ORM\JoinColumn(nullable: false)]
     private ?Projet $projet = null;
 
-    #[ORM\OneToOne(inversedBy: 'tache', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'tache')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Etat $etat = null;
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EtatRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EtatRepository::class)]
@@ -16,8 +17,8 @@ class Etat
     #[ORM\Column(length: 20)]
     private ?string $libelle = null;
 
-    #[ORM\OneToOne(mappedBy: 'etat', targetEntity:Tache::class, cascade: ['persist', 'remove'])]
-    private ?Tache $tache = null;
+    #[ORM\OneToMany(mappedBy: 'etat', targetEntity:Tache::class)]
+    private Collection $tache;
 
     #[ORM\Column(length: 150)]
     private ?string $color = null;
@@ -39,7 +40,7 @@ class Etat
         return $this;
     }
 
-    public function getTache(): ?Tache
+    public function getTache(): Collection
     {
         return $this->tache;
     }

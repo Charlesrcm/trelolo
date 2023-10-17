@@ -14,7 +14,7 @@
 <div class="mt-4 d-flex justify-content-between">
     {% for prio in prioriteListe %}
     
-        <div class="col-4 border border-dark rounded row justify-content-center">
+        <div id="{{ prio.id }}" class="col-4 border border-dark rounded row justify-content-center">
             <h3 class="text-center">{{prio.libelle}}</h3>
             {% for projet in projetListe %}
 
@@ -29,24 +29,23 @@
 
                 {% for tache in tacheListe %}
                 {% if (tache.projet is same as projet)%}
-                <div id="tache_card" class="card d-flex justify-content-center mb-3">
+                <div class="card d-flex justify-content-center mb-3">
                     <div class="d-flex justify-content-between align-items-center card-header bg-black bg-gradient bg-opacity-50">
                         <h5 class="text-light">{{ tache|capitalize }}</h5>
-                        {# <a class="badge text-decoration-none" href="" style="background: {{ tache.etat.color }}"></a> #}
 
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle text-light" style="background: {{ tache.etat.color }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ tache.etat }}
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        {# select de l'état de la tâche #}
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" tache="{{ tache.id }}">
                                 {% for etat in etatListe %}
-                                {% if (tache.etat is not same as(etat)) %}
-                                    <li><a class="dropdown-item" id="listEtat">{{ etat }}</a></li>
+                                {% if (tache.etat is same as(etat)) %}
+                                    <option value="{{ etat.id }}" selected>{{ etat }}</option>
+                                {% else %}
+                                    <option value="{{ etat.id }}">{{ etat }}</option>
                                 {% endif %}
                                 {% endfor %}
-                            </ul>
+                            </select>
                         </div>
-
+                        
                     </div>
                     <div class="card-body">
                         <h6 class="card-title"><strong>Attribué à : </strong>{{ tache.utilisateur }}</h6>
