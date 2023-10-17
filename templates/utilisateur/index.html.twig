@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ user }}!{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1>Salut {{ user }}!</h1>
+
+    <div class="container">
+        {{ form(form_user) }}
+    </div>
+</div>
+{% endblock %}

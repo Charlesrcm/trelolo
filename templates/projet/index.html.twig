@@ -3,8 +3,8 @@
 {% block title %}Projet !{% endblock %}
 
 {% block body %}
-
-<div class="container-fluid mt-3 d-flex justify-content-between">
+{% if app.user is not null %}
+<div class="container-fluid mt-3 mb-5 d-flex justify-content-between">
     <h1>Page des projets</h1>
     <div class="align-self-center">
         <a class="btn btn-primary text-decoration-none text-light" href="/admin">Ajouter un projet</a>
@@ -14,16 +14,16 @@
 <div class="mt-4 d-flex justify-content-between">
     {% for prio in prioriteListe %}
     
-        <div id="{{ prio.id }}" class="col-4 border border-dark rounded row justify-content-center">
-            <h3 class="text-center">{{prio.libelle}}</h3>
+        <div id="{{ prio.id }}" class="col-4 border-bottom border-2 row justify-content-center projetParent">
+            <h3 class="text-center mb-0">{{prio.libelle}}</h3>
             {% for projet in projetListe %}
 
             {# test pour mettre les projet dans chaques colonnes #}
             {% if (projet.priorite is same as prio) %}
-            <div class="border border-info border-3 rounded my-3">
+            <div class="border border-info border-3 rounded my-3" id="projet">
 
                 <div class="row mt-2">
-                    <h4 class="col-5">{{projet|capitalize}}</h4>
+                    <h4 class="col-5 pe-1">{{projet|capitalize}}</h4>
                     <p class="col-7 px-0">Administrateur : {{projet.utilisateur}}</p>
                 </div>
 
@@ -61,6 +61,7 @@
         </div>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
 
 

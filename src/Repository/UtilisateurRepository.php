@@ -53,6 +53,15 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
             ->getResult();
     }
 
+    public function add(Utilisateur $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity); // persist va créer et enregistrer les données en bdd
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects
 //     */

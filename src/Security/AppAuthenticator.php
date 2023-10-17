@@ -45,8 +45,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        return new RedirectResponse($this->urlGenerator->generate('app_projet'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

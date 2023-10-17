@@ -3,18 +3,20 @@
 {% block title %}Enregistrement{% endblock %}
 
 {% block body %}
-<div class="container d-flex flex-column col-4">
+<div class="d-flex justify-content-center">
+    <div class="flex-column col-4">
 
-    <h1>Créer un compte</h1>
+        <h1>Créer un compte</h1>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe'
+            }) }}
 
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
+</div>
 </div>
 {% endblock %}
