@@ -31,7 +31,7 @@
                     <ul class="nav navbar-expand-lg bg-dark">
                         <li class="nav-item"><a class="nav-link" href="/projet">Projet</a></li>
                         <li class="nav-item"><a class="nav-link" href="/utilisateur">Bienvenue {{ app.user.nom }}</a></li>
-                        {% if (app.user.roles[0] is same as("ROLE_ADMIN")) %}
+                        {% if (app.user.roles and app.user.roles[0] is same as("ROLE_ADMIN")) %}
                         <li class="nav-item"><a class="nav-link " href="/admin">Dashboard</a></li>
                         {% endif %}
                         <li class="nav-item d-flex justify-content-end"><a class="nav-link" href="/logout">Se déconnecter</a></li>

@@ -32,8 +32,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
-            if($request->get("registration_form")['isIsAdmin'] === true){
+            
+            if($request->get("registration_form")['isAdmin'] === "1"){
                 $user->setIsAdmin(true);
                 $user->setRoles(["ROLE_ADMIN"]);
             }

@@ -17,7 +17,6 @@ class UtilisateurFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
             ->add('nom', TypeTextType::class)
             ->add('enregistrer', SubmitType::class);
         ;
