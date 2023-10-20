@@ -1,3 +1,86 @@
-body {
-    background-color: lightgray;
+.arrow{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transition: .5s;
+}
+
+.arrow::before,
+.arrow::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 40px;
+    border-radius: 5px;
+    background: red;
+    transition: .5s;
+}
+
+.arrow1::before{
+    left: 0;
+    transform: translate(4px, -50%) rotate(-47deg);
+}
+
+.arrow1::after{
+    right: 0;
+    transform: translate(-4px, -50%) rotate(47deg);
+}
+
+.arrow1.active1::before{
+    transform: translate(4px, -50%) rotate(45deg);
+}
+.arrow1.active1::after{
+    transform: translate(-4px, -50%) rotate(-45deg);
+}
+
+
+/* div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} */
+
+/*div.projetParent {
+  position: relative;
+  height: auto;
+} */
+
+/*#projet {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  top: 40px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 360px;
+} */
+
+/*#projet div:first-child {
+     position: absolute;
+    background-color: blueviolet;
+} */
+
+/* h4.col-5 {
+    width: 115px;
+} */
+
+/* a.nav-link {
+    color: white;
+} */
+
+/* a.nav-link:hover {
+  color: rgb(66, 66, 188);
+} */
+
+#arrow{
+    cursor: pointer;
+}
+
+#projetContainer{
+    display: none;
+}
+
+@media screen and (min-width: 760px){
+    i.fa{
+        display: none;
+    }
 }

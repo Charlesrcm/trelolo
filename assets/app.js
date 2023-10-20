@@ -11,4 +11,8 @@
 // start the Stimulus application
 import './bootstrap';
 
-import '../public/JS/dragDrop.js';
+import './styles/app.css';
+
+import '../public/JS/ajaxEtat.js';
+
+import '../public/JS/arrow.js';
