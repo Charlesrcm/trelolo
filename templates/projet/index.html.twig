@@ -20,12 +20,12 @@
 
 
 {# {% for message in app.flashes("success") %} #}
-    <div class="alert alert-success" id="message">
+    <div class="alert alert-success" id="Etatmessage">
         {# {{ message }} #}
     </div>
 {# {% endfor %} #}
 
-<div class="d-md-flex justify-content-md-evenly container-fluid" id="projet_display">
+<div class="container-fluid" id="projet_display">
     {% for prio in prioriteListe %}
     
         <div id="projetParent{{ prio.id }}" class="col-md-3 projetParent my-3 shadow">

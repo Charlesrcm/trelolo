@@ -37,7 +37,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Tache::class, cascade:["remove"])]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Tache::class, cascade: ["remove"])]
     private Collection $taches;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Projet::class)]
@@ -81,14 +81,14 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-                
+
         return array_unique($roles);
     }
-    
+
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-        
+
         return $this;
     }
 
@@ -182,7 +182,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->taches;
     }
-    
+
     public function addTach(Tache $tach): static
     {
         if (!$this->taches->contains($tach)) {

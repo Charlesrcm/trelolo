@@ -13,7 +13,7 @@
           idTache: idTache,
         },
         success: function (html, message) {
-          console.log(html, html.message);
+          console.log(html, message, html.message);
           // recharger la page pour afficher le flash message
           // setTimeout(function() {
           //   location.reload();
