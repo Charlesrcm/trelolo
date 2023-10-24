@@ -15,9 +15,9 @@
         {% endblock %}
     </head>
 
-        {# {% block javascripts %}
+        {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %} #}
+        {% endblock %}
 
     <body>
         <nav role="navigation" aria-label="menu de navigation du site" class="d-flex col-12 ps-md-3 navbar navbar-expand-md navbar-dark bg-dark">
@@ -63,7 +63,7 @@
         </script>
         <script src="https://kit.fontawesome.com/1bb86813ac.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="{{ asset('JS/ajaxEtat.js') }}"></script>
-        <script src="{{ asset('JS/arrow.js') }}"></script>
+        <script src="{{ asset('javascript/ajaxEtat.js') }}"></script>
+        <script src="{{ asset('javascript/arrow.js') }}"></script>
     </body>
 </html>

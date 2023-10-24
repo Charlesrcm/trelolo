@@ -93,11 +93,7 @@ class UtilisateurCrudController extends AbstractCrudController
         if ($entityInstance->isIsAdmin() === false)
             $entityInstance->setRoles(["ROLE_USER"]);
 
-        // $defaultPWD = $entityInstance->setPassword("root");
-        // $defaultPWD = trim($defaultPWD);
-        // $defaultPWD = password_hash($defaultPWD);
 
-        // dd($entityInstance);
         parent::persistEntity($entityManager, $entityInstance);
     }
 }

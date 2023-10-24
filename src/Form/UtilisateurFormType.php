@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,8 +17,7 @@ class UtilisateurFormType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('nom', TypeTextType::class)
-            ->add('enregistrer', SubmitType::class);
-        ;
+            ->add('enregistrer', SubmitType::class);;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

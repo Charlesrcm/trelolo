@@ -6,8 +6,6 @@ use App\Entity\Etat;
 use App\Entity\Priorite;
 use App\Entity\Projet;
 use App\Entity\Tache;
-use App\Form\ProjetFormType;
-use App\Repository\ProjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

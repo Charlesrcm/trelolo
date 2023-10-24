@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
  * @extends ServiceEntityRepository<Utilisateur>
-* @implements PasswordUpgraderInterface<Utilisateur>
+ * @implements PasswordUpgraderInterface<Utilisateur>
  *
  * @method Utilisateur|null find($id, $lockMode = null, $lockVersion = null)
  * @method Utilisateur|null findOneBy(array $criteria, array $orderBy = null)
@@ -53,6 +53,13 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
             ->getResult();
     }
 
+    /**
+     * Fonction d'ajout en base
+     *
+     * @param Utilisateur $entity
+     * @param boolean $flush
+     * @return void
+     */
     public function add(Utilisateur $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity); // persist va créer et enregistrer les données en bdd
@@ -62,26 +69,16 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         }
     }
 
-//    /**
-//     * @return Utilisateur[] Returns an array of Utilisateur objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-   public function findOneBySomeField(): ?Utilisateur
-   {
-       return $this->createQueryBuilder('u')
-           ->andWhere('u.is_admin = 1')
-           ->getQuery()
-           ->getOneOrNullResult();
-   }
+    /**
+     * Fonction qui permet de récupérer un utilisateur admin
+     *
+     * @return Utilisateur|null
+     */
+    public function findOneBySomeField(): ?Utilisateur
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_admin = 1')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

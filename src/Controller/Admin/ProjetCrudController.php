@@ -3,19 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Projet;
-use App\Entity\Utilisateur;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\BrowserKit\Request;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class ProjetCrudController extends AbstractCrudController
 {
@@ -24,11 +18,11 @@ class ProjetCrudController extends AbstractCrudController
     {
         return Projet::class;
     }
-    
+
     public function configureFields(string $pageName): iterable
     {
         $userId = $this->getUser()->getId();
-        
+
         return [
             yield TextField::new('nom_projet', 'Nom du projet'),
             yield IdField::new('utilisateur')
@@ -43,7 +37,7 @@ class ProjetCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if(!$entityInstance instanceof Projet) return; // condition de vérification de l'objet envoyé
+        if (!$entityInstance instanceof Projet) return; // condition de vérification de l'objet envoyé
 
         $entityInstance->setUtilisateur($this->getUser()); // je passe en paramètre l'objet Utilisateur car il récupère l'id
 
@@ -51,5 +45,4 @@ class ProjetCrudController extends AbstractCrudController
 
         parent::persistEntity($entityManager, $entityInstance); // pour flush le persistEntity
     }
-    
 }

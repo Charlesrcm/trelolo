@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Admin;
 use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
@@ -13,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -32,8 +30,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            
-            if($request->get("registration_form")['isAdmin'] === "1"){
+
+            if ($request->get("registration_form")['isAdmin'] === "1") {
                 $user->setIsAdmin(true);
                 $user->setRoles(["ROLE_ADMIN"]);
             }

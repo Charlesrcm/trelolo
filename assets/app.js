@@ -13,8 +13,6 @@ import './bootstrap';
 
 import './styles/app.css';
 
-import '../public/JS/ajaxEtat.js';
+import '../public/javascript/ajaxEtat.js';
 
-import '../public/JS/arrow.js';
-
-import '../public/JS/dragDrop';
+import '../public/javascript/arrow.js';
