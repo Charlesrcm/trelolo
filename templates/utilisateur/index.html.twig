@@ -4,11 +4,11 @@
 
 {% block body %}
 
-<div>
-    <h1>Salut {{ user }}!</h1>
+<section class="container mt-3 mb-5 text-light">
+    <h1 class="text-center">Salut {{ user }}!</h1>
 
-    <div class="container">
+    <div class="container-fluid mt-3 col-4">
         {{ form(form_user) }}
     </div>
-</div>
+</section>
 {% endblock %}

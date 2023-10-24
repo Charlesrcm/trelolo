@@ -36,7 +36,7 @@ class ProjetCrudController extends AbstractCrudController
                 ->setFormTypeOption('disabled', true) // Empêche la modification du champ par l'utilisateur
                 ->setFormTypeOption('attr', ['value' => $userId])
                 ->hideOnForm(),
-            yield DateField::new('d_creation', 'Date de création'),
+            yield DateField::new('d_creation', 'Date de création')->hideOnForm(),
             yield AssociationField::new('priorite', 'Priorité'),
         ];
     }

@@ -6,58 +6,93 @@
 
 {# si l'utilisateur est connecté on affiche la page des projets #}
 {% if app.user %}
-<div class="container-fluid mt-3 mb-5 d-flex justify-content-between">
-    <h1>Page des projets</h1>
-    <div class="align-self-center text-end">
-        <a class="btn btn-primary text-decoration-none text-light" href="/admin">Ajouter un projet</a>
-        <a class="btn btn-primary text-decoration-none text-light" href="/admin">Ajouter une tâche</a>
+<section class="container-fluid mt-3 mb-5 d-flex flex-column flex-md-row col-md-12">
+    <h1 class="text-center text-uppercase col-md-4 text-white">Page des projets</h1>
+    <div class="row text-center text-md-end col-md-8 justify-content-md-end align-items-md-center">
+        <div class="col-6 col-md-3">
+            <a class="btn btn-dark text-decoration-none text-light fs-5" href="/admin">Ajouter un projet</a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a class="btn btn-dark text-decoration-none text-light fs-5" href="/admin">Ajouter une tâche</a>
+        </div>
     </div>
-</div>
+</section>
 
-<div class="container-fluid" id="projet_display">
+
+{# {% for message in app.flashes("success") %} #}
+    <div class="alert alert-success" id="message">
+        {# {{ message }} #}
+    </div>
+{# {% endfor %} #}
+
+<div class="d-md-flex justify-content-md-evenly container-fluid" id="projet_display">
     {% for prio in prioriteListe %}
     
-        <div id="{{ prio.id }}" class="projetParent my-3">
-            <div class="d-flex col-12 justify-content-around border-bottom border-2 divTitle">
-                <h3 id="prioTitle" class="col-4 pb-2">{{prio.libelle}}</h3>
-                <div id="arrow" class="col-4 text-center"><i class="fa fa-regular fa-circle-up fa-xl"></i></div>
+        <div id="projetParent{{ prio.id }}" class="col-md-3 projetParent my-3 shadow">
+            <div class="d-flex justify-content-around border-bottom border-2 py-2 w-auto divTitle" id="prioTitle{{ prio.id }}">
+                
+                {# affichage des priorités #}
+                <h3 id="prioTitle" class="col-4 col-md-6  text-light text-center fs-2">{{prio.libelle|upper}}</h3>
+
+                {# flèche pour rabattre les projets dans les différentes prioritées #}
+                <div id="arrow{{ prio.id }}" class="d-flex justify-content-center align-self-center d-md-none col-4 text-center"><i class="fa fa-regular fa-circle-up fa-xl text-white"></i></div>
             </div>
 
-            <section class="active" id="projetContainer {{ prio.id }}">
+            <section class="active bg-white py-3 px-2 w-auto" id="projetContainer {{ prio.id }}">
+
                 {% for projet in projetListe %}
 
-                {# test pour mettre les projet dans chaques colonnes #}
+                {# test pour mettre les projet dans chaques colonnes lié à leur priorités#}
                 {% if (projet.priorite is same as prio) %}
-                <div class="border border-info border-3 rounded my-3" id="projet">
+                <div class="flex-column shadow-lg my-md-4 mb-4 container bg-white projet" id="projet">
 
-                    <div class="row justify-content-evenly align-items-center">
-                        <h4 class="col-5 pe-1">{{projet|capitalize}}</h4>
-                        <p class="col-7 mb-0">Administrateur : {{projet.utilisateur}}</p>
+                    <div class="row text-center justify-content-around align-items-center pt-3">
+                        {# Titre du projet #}
+                        <h4 class="col-6 pe-1">{{projet|upper}}</h4>
+                        
+                        {# flèche pour rabbatre un projet #}
+                        <div class="col-2 arrowProjet"><i class="fa-regular fa-circle-up fa-xl"></i></div>
                     </div>
 
-                    {% for tache in tacheListe %}
-                    {% if (tache.projet is same as projet)%}
-                    <div class="card  mb-3">
-                        <div class=" card-header bg-black bg-gradient bg-opacity-50">
-                            <h5 class="text-light">{{ tache|capitalize }}</h5>
+                    <div>                        
+                        {# Affichage de l'administrateur qui à créé le projet #}
+                        <p class="text-center">Administrateur : {{projet.utilisateur}}</p>
+                        
 
-                            {# select de l'état de la tâche #}
-                            <div class="form-floating">
-                                <select class="form-select" id="floatingSelect" tache="{{ tache.id }}">
-                                    {% for etat in etatListe %}
-                                    {% if (tache.etat is same as(etat)) %}
-                                        <option value="{{ etat.id }}" selected>{{ etat }}</option>
-                                    {% else %}
-                                        <option value="{{ etat.id }}">{{ etat }}</option>
-                                    {% endif %}
-                                    {% endfor %}
-                                </select>
+                        {% for tache in tacheListe %}
+
+                        {# Si la tache est celle du projet en cours alors on l'affiche #}
+                        {% if (tache.projet is same as projet)%}
+                        <div class="d-flex justify-content-center">
+                        
+                            <div class="shadow card mb-3 w-100" id="tache">
+                                <div class="d-flex justify-content-around align-items-center card-header bg-black bg-gradient bg-opacity-50">
+                                    
+                                    {# Nom de la tâche #}
+                                    <h5 class="text-light col-4">{{ tache|capitalize }}</h5>
+
+                                    {# select de l'état de la tâche #}
+                                    <div class="form-floating col-6">
+                                        <select class="form-select p-0" id="floatingSelect" tache="{{ tache.id }}">
+                                            {% for etat in etatListe %}
+
+                                                {# Test pour afficher l'etat sélectionné par l'utilisateur #}
+                                                {% if (tache.etat is same as(etat)) %}
+                                                    <option value="{{ etat.id }}" selected>{{ etat }}</option>
+                                                {% else %}
+                                                    <option value="{{ etat.id }}">{{ etat }}</option>
+                                                {% endif %}
+
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-title"><strong>Attribué à : </strong>{{ tache.utilisateur }}</h6>
+                                    <p class="card-text"><strong>Description : </strong>{{ tache.description }}</p>
+                                </div>
                             </div>
-                            
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title"><strong>Attribué à : </strong>{{ tache.utilisateur }}</h6>
-                            <p class="card-text"><strong>Description : </strong>{{ tache.description }}</p>
                         </div>
                     </div>
                     {% endif %}

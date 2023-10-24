@@ -21,13 +21,13 @@ class TacheController extends AbstractController
     }
 
     #[Route("/tache/modif", methods: ['POST'])]
-    public function modif(Request $request, EntityManagerInterface $em): Response
+    public function modif(Request $request, EntityManagerInterface $em): string
     {
         $idEtat = $request->get('idEtat'); // récupère l'id de l'etat
         $idTache = $request->get('idTache'); // récupère l'id de la tache
 
-        $tache = $em->getRepository(Tache::class)->find($idTache);
-        $etat = $em->getRepository(Etat::class)->find($idEtat);
+        $tache = $em->getRepository(Tache::class)->find($idTache); // on récupère le repository de la tache 
+        $etat = $em->getRepository(Etat::class)->find($idEtat); // on récupère le repository de la l'état
 
         if (!$tache) {
             throw $this->createNotFoundException(
@@ -39,16 +39,19 @@ class TacheController extends AbstractController
                     'Pas de tâche trouvée avec l\'id '.$idEtat
                 );
             }
+
             $tache->setEtat($etat);
         }
+
+
         $em->persist($tache);
         $em->flush();
 
         // génération d'un message indiquant la prise en compte de la modification
-        $this->addFlash(
-            'success',
-            'Vous avez changé l\'état de la tâche ' . $tache->getTitre() . ' pour : ' . $tache->getEtat()
-        );
+        // $this->addFlash(
+        //     'success',
+        //     'Vous avez changé l\'état de la tâche ' . $tache->getTitre() . ' pour : ' . $tache->getEtat()
+        // );
 
         
         return $this->json(['message' => 'Donnée enregistrée avec succès en base de données']);

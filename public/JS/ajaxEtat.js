@@ -12,12 +12,12 @@
           idEtat: idEtat,
           idTache: idTache,
         },
-        success: function () {
-
+        success: function (html, message) {
+          console.log(html, html.message);
           // recharger la page pour afficher le flash message
-          setTimeout(function() {
-            location.reload();
-          }, 10);
+          // setTimeout(function() {
+          //   location.reload();
+          // }, 10);
         },
         error: function(xhr, status, error) {
           // Gérer les erreurs éventuelles

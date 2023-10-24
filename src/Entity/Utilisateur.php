@@ -37,7 +37,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Tache::class)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Tache::class, cascade:["remove"])]
     private Collection $taches;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Projet::class)]

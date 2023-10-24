@@ -25,12 +25,7 @@ class Projet
     #[ORM\OneToMany(mappedBy: 'projet', targetEntity: Tache::class, orphanRemoval: true)]
     private Collection $taches;
 
-    // #[ORM\ManyToOne(inversedBy: 'utilisateur', targetEntity: Admin::class)]
-    // // #[ORM\JoinColumn(nullable: false)]
-    // private ?Admin $admin = null;
-
     #[ORM\ManyToOne(inversedBy: 'projets', targetEntity: Priorite::class)]
-    // #[ORM\JoinColumn(nullable: false)]
     private $priorite;
 
     #[ORM\ManyToOne(inversedBy: 'projets', targetEntity: Utilisateur::class)]
