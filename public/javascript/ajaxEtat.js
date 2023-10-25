@@ -2,8 +2,6 @@ $('.floatingSelect').on('change', function () {
   var idEtat = $(this).val();
   var idTache = $(this).attr("tache");
 
-  console.log("etat : "+idEtat, "tache : "+idTache);
-
   $.ajax({
     type: "POST",
     url: "/tache/modif",
@@ -11,16 +9,18 @@ $('.floatingSelect').on('change', function () {
       idEtat: idEtat,
       idTache: idTache,
     },
-    success: function (html, message) {
+    success: function (html) {
       let alert = $('#Etatmessage');
 
+      if (alert.css('display', 'none'))
+        alert.css('display', 'block')
+
       alert.addClass("alert-success");
-      alert.append(html.message);
+      alert.html(html.message);
             
-      $('.alert').fadeOut(10000);
-      setTimeout(function () {
-        alert.removeClass("alert-success");        
-      }, 11000)
+      $('.alert').fadeOut(5000, function () {
+        alert.removeClass("alert-success");
+      });
     },
     error: function(xhr, status, error) {
       // Gérer les erreurs éventuelles
@@ -28,14 +28,3 @@ $('.floatingSelect').on('change', function () {
       }
   })
 })
-
-
-
-// if ($('.alert')) {
-// $('.alert').fadeOut(10000); // fondu de l'alerte de 10sec
-
-// Enlève la div alerte pour les prochaines
-// setTimeout(function() {
-//   $('.alert').remove();
-// }, 5000);
-// }

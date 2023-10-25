@@ -6,9 +6,9 @@
 
 {# si l'utilisateur est connecté on affiche la page des projets #}
 {% if app.user %}
-<section class="container-fluid mt-3 mb-5 d-flex flex-column flex-md-row col-md-12">
+<section role="" class="container-fluid mt-3 mb-5 d-flex flex-column flex-md-row col-md-12">
     <h1 class="text-center text-uppercase col-md-4 text-white">Page des projets</h1>
-    <div class="row text-center text-md-end col-md-8 justify-content-md-end align-items-md-center">
+    <div aria-label="Bouton de redirection vers le dashboard" class="row text-center text-md-end col-md-8 justify-content-md-end align-items-md-center">
         <div class="col-6 col-md-3">
             <a class="btn btn-dark text-decoration-none text-light fs-5" href="/admin">Ajouter un projet</a>
         </div>
@@ -19,11 +19,8 @@
 </section>
 
 
-{# {% for message in app.flashes("success") %} #}
-    <div class="alert " id="Etatmessage">
-        {# {{ message }} #}
-    </div>
-{# {% endfor %} #}
+<div role="alert" aria-label="alerte" class="alert" id="Etatmessage">
+</div>
 
 <div class="container-fluid" id="projet_display">
     {% for prio in prioriteListe %}
