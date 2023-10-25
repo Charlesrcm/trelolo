@@ -38,9 +38,7 @@ class TacheController extends AbstractController
                 throw $this->createNotFoundException(
                     'Pas de tâche trouvée avec l\'id ' . $idEtat
                 );
-            }
-
-            $tache->setEtat($etat);
+            } else $tache->setEtat($etat);
         }
 
         $em->persist($tache);

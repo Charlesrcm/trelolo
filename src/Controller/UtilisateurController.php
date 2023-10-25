@@ -19,8 +19,6 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             $utilisateurRepository->add($user, true);
         }
 

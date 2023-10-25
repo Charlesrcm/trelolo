@@ -25,9 +25,9 @@ class TacheCrudController extends AbstractCrudController
             yield AssociationField::new('etat', 'Etat de la tache'),
             yield AssociationField::new('projet', 'Associer à quel projet ?'),
             yield AssociationField::new('utilisateur', 'Choisir un utilisateur')
-                ->setQueryBuilder(
-                    fn (QueryBuilder $QueryBuilder) => $QueryBuilder->getEntityManager()->getRepository(Utilisateur::class)->findOneBySomeField()
-                )
+            // ->setQueryBuilder(
+            //     fn (QueryBuilder $QueryBuilder) => $QueryBuilder->getEntityManager()->getRepository(Utilisateur::class)->findOneBySomeField()
+            // )
         ];
     }
 }

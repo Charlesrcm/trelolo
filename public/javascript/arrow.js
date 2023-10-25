@@ -1,4 +1,4 @@
-var projetParent = $('.projetParent');
+let projetParent = $('.projetParent');
 
 /**
  * fonction d'écoute pour changer le sens de la flèche et replier la liste des projets sur une vue de téléphone
@@ -28,7 +28,7 @@ for (let i = 1; i <= projetParent.length; i++) {
 /**
  * fonction pour replier un projet pour une meilleure visibilité
  */
-var arrow_projet = $('.arrowProjet');
+let arrow_projet = $('.arrowProjet');
 
 for (let i = 0; i < arrow_projet.length; i++) {
   let element = $(arrow_projet[i]);

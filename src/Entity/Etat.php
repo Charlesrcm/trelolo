@@ -17,11 +17,8 @@ class Etat
     #[ORM\Column(length: 20)]
     private ?string $libelle = null;
 
-    #[ORM\OneToMany(mappedBy: 'etat', targetEntity:Tache::class)]
+    #[ORM\OneToMany(mappedBy: 'etat', targetEntity: Tache::class)]
     private Collection $tache;
-
-    #[ORM\Column(length: 150)]
-    private ?string $color = null;
 
     public function getId(): ?int
     {
@@ -60,17 +57,5 @@ class Etat
     public function __toString()
     {
         return $this->libelle;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): static
-    {
-        $this->color = $color;
-
-        return $this;
     }
 }
