@@ -35,4 +35,42 @@ class ProjetController extends AbstractController
             'etatListe' => $etatListe,
         ]);
     }
+
+    #[Route("/projet/prio", methods: ["POST"])]
+    public function modif(Request $request, EntityManagerInterface $em): Response
+    {
+        if (!empty($request->get('idSection'))) {
+            $idPrio = $request->get('idSection'); // on récupère l'id de la priorité contenu dans la section
+            if (preg_match('/(\d+)/', $idPrio, $matches)) {
+                $idPrio = $matches[0]; // grâce à preg_match, on récupère l'id de la priorité
+            }
+        }
+
+        if (!empty($request->get('idProjet'))) {
+            $idProjet = $request->get('idProjet'); // on récupère l'id du projet
+            if (preg_match('/(\d+)/', $idProjet, $matches)) {
+                $idProjet = $matches[0]; // grâce à preg_match, on récupère l'id du projet en base
+            }
+        }
+
+        $projet = $em->getRepository(Projet::class)->find($idProjet);
+        $priorite = $em->getRepository(Priorite::class)->find($idPrio);
+
+        if (!$priorite) {
+            throw $this->createNotFoundException(
+                'Pas de priorité trouvée avec l\'id ' . $idPrio
+            );
+        } else {
+            if (!$projet) {
+                throw $this->createNotFoundException(
+                    'Pas de projet trouvé avec l\'id ' . $idProjet
+                );
+            } else $projet->setPriorite($priorite);
+        }
+
+        $em->persist($projet);
+        $em->flush();
+
+        return $this->json(["message" => "Le projet " . $projet . " est devenu : " . $priorite]);
+    }
 }

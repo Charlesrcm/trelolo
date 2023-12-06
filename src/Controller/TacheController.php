@@ -23,8 +23,11 @@ class TacheController extends AbstractController
     #[Route("/tache/modif", methods: ['POST'])]
     public function modif(Request $request, EntityManagerInterface $em): Response
     {
-        $idEtat = $request->get('idEtat'); // récupère l'id de l'etat
-        $idTache = $request->get('idTache'); // récupère l'id de la tache
+        if (!empty($request->get('idEtat')))
+            $idEtat = $request->get('idEtat'); // récupère l'id de l'etat
+
+        if (!empty($request->get('idTache')))
+            $idTache = $request->get('idTache'); // récupère l'id de la tache
 
         $tache = $em->getRepository(Tache::class)->find($idTache); // on récupère le repository de la tache 
         $etat = $em->getRepository(Etat::class)->find($idEtat); // on récupère le repository de la l'état

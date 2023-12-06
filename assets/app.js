@@ -16,3 +16,5 @@ import './styles/app.css';
 import '../public/javascript/ajaxEtat.js';
 
 import '../public/javascript/arrow.js';
+
+import '../public/javascript/drag&drop.js';

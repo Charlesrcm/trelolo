@@ -6,7 +6,13 @@ kernel:
     resource: ../src/Kernel.php
     type: annotation
 
-route_ajax:
+ajaxEtat:
     path: /tache/modif
     controller: App\Controller\TacheController::modif
     methods: POST
+
+drag&drop:
+    path: /projet/prio
+    controller: App\Controller\ProjetController::modif
+    methods: POST
+

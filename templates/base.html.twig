@@ -34,7 +34,7 @@
             {% if app.user %}
 
                 <div aria-label="boutons de navigation" class="collapse navbar-collapse d-md-flex justify-content-md-end col-md-6" id="navbarSupportedContent">
-                    <ul class="nav navbar-expand-md bg-dark text-end fs-5">
+                    <ul class="nav navbar-expand-md bg-dark text-end fs-5 text-center">
                         <li class="nav-item"><a class="nav-link text-light" href="/projet">PROJET</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/utilisateur">BIENVENUE {{ app.user.nom|upper }}</a></li>
                         {% if (app.user.roles and app.user.roles[0] is same as("ROLE_ADMIN")) %}
@@ -65,5 +65,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('javascript/ajaxEtat.js') }}"></script>
         <script src="{{ asset('javascript/arrow.js') }}"></script>
+        <script src="{{ asset('javascript/drag&drop.js') }}"></script>
     </body>
 </html>
