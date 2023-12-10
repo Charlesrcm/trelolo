@@ -47,6 +47,9 @@ class TacheController extends AbstractController
         $em->persist($tache);
         $em->flush();
 
-        return $this->json(['message' => 'Donnée enregistrée avec succès en base de données']);
+        if ($request->get("idEtat") === "3") {
+            return $this->render('projet/modal.html.twig', []);
+        } else
+            return $this->json(['message' => 'Donnée enregistrée avec succès en base de données']);
     }
 }

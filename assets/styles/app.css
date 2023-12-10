@@ -1,0 +1,213 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/styles/app.css ***!
+  \**************************************************************************************************************/
+
+/* police */
+@font-face {
+  font-family: "coolvetica";
+  src: url("../font/CoolveticaRg-Regular.ttf") format('truetype');
+  
+  font-family: "everyday";
+  src: url("../font/explore_everyday.ttf") format('truetype');
+  
+  font-family: "beyonders";
+  src: url("../font/Beyonders.ttf") format('truetype');
+}
+
+body{
+  font-family: "coolvetica";
+}
+
+h1{
+  font-family: "beyonders";
+  font-size: 20px;
+}
+/* **** */
+
+
+body{
+  background: #386E72;
+}
+
+
+div.divTitle{
+  justify-content: space-around;
+  border-radius: 25px 25px 0 0;
+}
+
+
+/* couleur de fond pour le titre */
+#prioTitle1{
+  /* background: #168936; */
+  background: #A65892;
+}
+
+#prioTitle2{
+  background: #BA5C33;
+}
+
+#prioTitle3{
+  background: #A65353;
+}
+/* ******* */
+
+
+/* contour du bloc de projet */
+div#projetParent1>section>div.projet{
+  border: solid 4px #A65892;
+  border-radius: 10px;
+}
+div#projetParent2>section>div.projet{
+  border: solid 4px #BA5C33;
+  border-radius: 10px;
+}
+div#projetParent3>section>div.projet{
+  border: solid 4px #A65353;
+  border-radius: 10px;
+}
+/* ********** */
+
+/* display colonne *****/
+
+.divTitle, .projet>div, .card-header{
+  display: flex;
+  flex-direction: row;
+}
+
+
+#infoProjet, .card, #entete, section.active{
+  display: flex;
+  flex-direction: column;
+}
+
+.projetParent{
+  flex: 30%;
+  margin: 1%;
+}
+
+section.active{
+  align-items: center;
+  border-radius: 0 0 25px 25px;
+}
+  
+div.arrowProjet{
+  cursor: pointer;
+}
+
+
+.divTitle{
+  justify-content: space-around;
+}
+
+.projet>div{
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card{
+  justify-content: center;
+}
+
+.card-header{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header>h5{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+/* *****  style pour les flèches**** */
+#display_arrow{
+  position: relative;
+  width: 64px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#display_arrow span{
+  display: inline-block;
+  position: absolute;
+  width: 45px;
+  height: 10px;
+  background: #b10a0a;
+  border-radius: 40px;
+  transition: .5s;
+}
+
+
+#display_arrow span:nth-child(1){
+  left: -1px;
+  transform: rotate(45deg);
+}
+
+#display_arrow span:nth-child(2){
+  right: -5px;
+  transform: rotate(-45deg);
+}
+
+/* ******** */
+
+
+
+.arrow{
+  align-self: center;
+}
+
+.projet{
+  cursor: move;
+}
+
+
+/* affichage pour les écrans supérieur au mobile */
+@media screen and (min-width: 768px ){
+
+  .arrow {
+    display: none;
+  }
+
+  #prioTitle {
+    text-align: center;
+  }
+
+  #projet_display, li{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #projet_display{
+    justify-content: space-evenly;
+  }
+
+  
+
+  li{
+    align-self: center;
+  }
+
+  #prioTitle{
+    width: auto;
+  }
+
+  section>div{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+/* modification de l'affichage au dessus de mobile et en dessous de laptop L */
+@media screen and (min-width: 768px ) and (max-width: 1439px){ 
+
+  div.divTitle{
+    width: 300px;
+  }
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtJQUNJLDJCQUEyQjtBQUMvQiIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyYXk7XG59XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/

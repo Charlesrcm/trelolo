@@ -3,9 +3,10 @@
 {% block title %}Projet !{% endblock %}
 
 {% block body %}
-
+    <div id="modal_display"></div>
     {# si l'utilisateur est connecté on affiche la page des projets #}
     {% if app.user %}
+    
         <section id="entete" class="container-fluid mt-3 mb-5">
             <h2 class="h1 text-center text-uppercase col-md-4 text-white">Page des projets</h2>
             
@@ -23,7 +24,11 @@
                         <h3 id="prioTitle" class="text-light text-center fs-2">{{prio.libelle|upper}}</h3>
 
                         {# flèche pour rabattre les projets dans les différentes prioritées #}
-                        <div id="arrow{{ prio.id }}" class="text-center arrow"><i class="fa fa-regular fa-circle-up fa-xl text-white"></i></div>
+                        {# <div id="arrowPrio{{ prio.id }}" class="text-center arrow"><i class="fa fa-regular fa-circle-up fa-xl text-white"></i></div> #}
+                        <div id="display_arrow">
+                            <span id="arrow_prio"></span>
+                            <span id="arrow_prio"></span>
+                        </div>
                     </div>
 
                     <section class="active bg-white py-3 px-2 w-auto projetContainer" id="projetContainer_{{ prio.id }}" ondrop="drop(event)" ondragover="allowDrop(event)">

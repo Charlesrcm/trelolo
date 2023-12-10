@@ -18,6 +18,7 @@ class ProjetController extends AbstractController
     #[Route('/projet', name: 'app_projet')]
     public function index(EntityManagerInterface $em,): Response
     {
+
         // récupère les priorités
         $prioriteListe = $em->getRepository(Priorite::class)->findAll();
         // récupère tous les projets

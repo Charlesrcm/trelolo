@@ -10,9 +10,10 @@
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
+        
         <h2 class="h3 my-5 font-weight-normal">Veuillez vous connecter</h2>
         <label class="mb-2" for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <input type="email" value="{{ email }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         <label class="mb-2 mt-4" for="inputPassword">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
@@ -22,9 +23,9 @@
 
         <a aria-label="lien pour créer un compte" href="/register" class="text-light">C'est ici pour créer un compte</a>
         
-        <button aria-label="bouton de conexion" class="btn btn-lg btn-dark my-3" type="submit">
-            Se connecter
-        </button>        
+        <button aria-label="bouton de connexion" id="button" type="submit">
+            <span class='button_text'>Se connecter</span>
+        </button>
         
     </div>
 </form>

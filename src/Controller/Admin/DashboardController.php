@@ -19,6 +19,9 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+        if (!$this->getUser() || $this->getUser()->getRoles()[0] === "ROLE_USER")
+            return $this->redirectToRoute('app_projet');
+
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         // utilise le projetController
         return $this->redirect($adminUrlGenerator->setController(ProjetCrudController::class)->generateUrl());

@@ -57,16 +57,17 @@ class DOMAnimations {
 
   static slideToggle(element, first_arrow, second_arrow) {
     let display = window.getComputedStyle(element).display
-    
-    if (display === "none") {
-      this.slideDown(element);
-      first_arrow.style.transform = "rotate(45deg)";
-      second_arrow.style.transform = "rotate(-45deg)";
-    } else {
-      this.slideUp(element);
-      first_arrow.style.transform = "rotate(135deg)";
-      second_arrow.style.transform = "rotate(-135deg)";
-    }
+
+      if (display === "none") {
+        this.slideDown(element);
+        first_arrow.style.transform = "rotate(45deg)";
+        second_arrow.style.transform = "rotate(-45deg)";
+      } else {
+        this.slideUp(element);
+        first_arrow.style.transform = "rotate(135deg)";
+        second_arrow.style.transform = "rotate(-135deg)";
+      }
+    // }
   }
 }
 
@@ -79,60 +80,36 @@ let arrows = document.querySelectorAll('#display_arrow');
 for (let i = 0; i < arrows.length; i++) {
   const ARROW = arrows[i];
 
-  let first_arrow =  ARROW.children[0];
-  let second_arrow =  ARROW.children[1];
-  
-  // first_arrow.style.transform = "rotate(45deg)";
-  // second_arrow.style.transform = "rotate(-45deg)";
-
   ARROW.addEventListener("click", function (e) {
-    
-    let infoProjet_display = true;
 
     let first_arrow = this.children[0];
     let second_arrow = this.children[1];
 
     let infoProjet = this.parentElement.nextElementSibling;
-    
-    if (infoProjet_display)
-    {
-      e.preventDefault();
-      DOMAnimations.slideToggle(infoProjet, first_arrow, second_arrow);
-      infoProjet_display = false;
-    } else
-    {
-      e.preventDefault();
-      DOMAnimations.slideToggle(infoProjet,first_arrow, second_arrow);
-    }    
+  
+    e.preventDefault();
+    DOMAnimations.slideToggle(infoProjet, first_arrow, second_arrow);
   })  
 }
 
 
-let projetParent = $('.projetParent');
-
-/**
- * fonction d'écoute pour changer le sens de la flèche et replier la liste des projets sur une vue de téléphone
-*/
-for (let i = 1; i <= projetParent.length; i++) {
+window.addEventListener('resize', function (e) {
   
+  let largeurEcran = window.innerWidth;
 
-  let arrowContainer = $('#arrow' + [i])
+  let arrows =  document.querySelectorAll("#arrow_prio");
 
-  arrowContainer.on('click', function () {
-    let section = $(this).parent().next()
+  for (let i = 0; i < arrows.length; i++) {
+    const ARROW = arrows[i];
 
-    // gestion du slide du projetContainer
-    if (section.hasClass("active")) {
-      section.slideUp("slow")
-      section.removeClass("active") // retire pour ne pas voir le block
-      $(this).children().addClass("fa-flip-vertical");
-      
-    } else {
-      $(this).children().removeClass("fa-flip-vertical");
-      section.slideDown("slow")
-      section.addClass("active"); // ajout lors de la vision du block
-    }
-  });
-}
+    let section = ARROW.parentElement.parentElement.nextElementSibling;
 
+    let display = window.getComputedStyle(section).display;
+
+    if (largeurEcran > 426 && display === "none") {
+      e.preventDefault();
+      DOMAnimations.slideDown(section);
+    }    
+  }
+})
 

@@ -16,3 +16,7 @@ drag&drop:
     controller: App\Controller\ProjetController::modif
     methods: POST
 
+modal:
+    path: /modal
+    controller: App\Controller\TacheController::finish
+    methods: POST
