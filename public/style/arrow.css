@@ -1,0 +1,35 @@
+/* *****  style pour les flèches**** */
+#display_arrow{
+  position: relative;
+  width: 64px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#arrow_prio{
+  background: seashell !important;
+}
+
+#display_arrow span{
+  display: inline-block;
+  position: absolute;
+  width: 45px;
+  height: 10px;
+  background: #b10a0a;
+  border-radius: 40px;
+  transition: .5s;
+}
+
+
+#display_arrow span:nth-child(1){
+  left: -1px;
+  transform: rotate(45deg);
+}
+
+#display_arrow span:nth-child(2){
+  right: -5px;
+  transform: rotate(-45deg);
+}

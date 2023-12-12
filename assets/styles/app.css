@@ -75,7 +75,7 @@ div#projetParent3>section>div.projet{
 }
 
 
-#infoProjet, .card, #entete, section.active{
+#infoProjet, #entete, section.active{
   display: flex;
   flex-direction: column;
 }
@@ -104,9 +104,9 @@ div.arrowProjet{
   align-items: center;
 }
 
-.card{
+/* .card{
   justify-content: center;
-}
+} */
 
 .card-header{
   justify-content: space-between;
@@ -130,6 +130,10 @@ div.arrowProjet{
   cursor: pointer;
 }
 
+#arrow_prio{
+  background: seashell !important;
+}
+
 #display_arrow span{
   display: inline-block;
   position: absolute;
@@ -151,8 +155,8 @@ div.arrowProjet{
   transform: rotate(-45deg);
 }
 
-/* ******** */
 
+/* ******** */
 
 
 .arrow{
@@ -167,7 +171,7 @@ div.arrowProjet{
 /* affichage pour les écrans supérieur au mobile */
 @media screen and (min-width: 768px ){
 
-  .arrow {
+  div.divTitle #arrow_prio {
     display: none;
   }
 
@@ -211,7 +215,7 @@ div.arrowProjet{
 
 
 /** gestion de l'animation du chargement */
-#button{
+#connection_button{
   position: relative;
   background: #212121;
   color: white;
@@ -255,6 +259,154 @@ div.arrowProjet{
 
   to {
       transform: rotate(1turn);
+  }
+}
+
+
+/* Animation du select terminé */
+
+img {
+  position: relative;
+  top: -80px;
+  left: 175px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+div.animate {
+  /* animation */
+  -webkit-animation: extend 1s ease-in-out;
+  -ms-animation: extend 1s ease-in-out;
+  animation: extend 1s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+div.animate > div.card-header, div.animate > div.card-body {
+  /* animation */
+  -webkit-animation: disappear 1s ease-in-out;
+  -ms-animation: disappear 1s ease-in-out;
+  animation: disappear 1s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;    
+}
+
+img.animate {
+  /* animation */
+  -webkit-animation: appear 1s ease-in-out;
+  -ms-animation: appear 1s ease-in-out;
+  animation: appear 1s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+
+/* fadeOut */
+.fadeOut{
+  animation: fadeOut 5s;
+}
+
+/*  keyframes  */
+@keyframes appear {
+  0% {
+      opacity: 0;
+  } 100% {
+      opacity: 1;
+  }
+}
+
+@-webkit-keyframes appear {
+  0% {
+      opacity: 0;
+  } 100% {
+      opacity: 1;
+  }
+}
+
+
+@keyframes extend {
+  0% {
+      width: 395px;
+      height: 159px;
+      border-radius: 50px;
+  } 10% {
+      width: 385px;
+      height: 159px;
+      background: #fff;
+      margin-left: - 5px;
+      margin-top: - 5px;
+  } 20% {
+      width: 395px;
+      height: 120px;
+      background: #6fb07f;
+      margin-left: 0px;
+      margin-top: 0px;
+  } 100% {
+      width: 100px;
+      height: 90px;
+      border-radius: 100px;
+      margin-left: 155px;
+      background: #6fb07f;
+  }
+}
+
+@-webkit-keyframes extend {
+  0% {
+      width: 395px;
+      height: 159px;
+      border-radius: 100px;
+  } 10% {
+      width: 385px;
+      height: 159px;
+      background: #fff;
+      margin-left: - 5px;
+      margin-top: - 5px;
+  } 20% {
+      width: 395px;
+      height: 159px;
+      background: #6fb07f;
+      margin-left: 0px;
+      margin-top: 0px;
+  } 100% {
+      width: 100px;
+      height: 159px;
+      border-radius: 100px;
+      margin-left: 50px;
+      background: #6fb07f;
+  }
+}
+
+@keyframes disappear {
+  0% {
+      opacity: 1;
+  } 20% {
+      color: #000000;
+  } 100% {
+      opacity: 0;
+  }
+}
+
+@-webkit-keyframes disappear {
+  0% {
+      opacity: 1;
+  } 20% {
+      color: #000000;
+  } 100% {
+      opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  } 50% {
+    opacity: 0.7;
+  } 100% {
+    opacity: 0;
   }
 }
 

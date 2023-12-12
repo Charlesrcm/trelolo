@@ -3,7 +3,6 @@
 {% block title %}Projet !{% endblock %}
 
 {% block body %}
-    <div id="modal_display"></div>
     {# si l'utilisateur est connecté on affiche la page des projets #}
     {% if app.user %}
     
@@ -12,7 +11,7 @@
             
             {# affichage du message au chagement d'état d'un tâche #}
             <div role="alert" aria-label="alerte" class="alert" id="Etatmessage"></div>
-        </section>        
+        </section>
 
         <div class="container-fluid" id="projet_display">
             {% for prio in prioriteListe %}
@@ -61,34 +60,36 @@
 
                                             {# Si la tache est celle du projet en cours alors on l'affiche #}
                                             {% if (tache.projet is same as projet)%}
-                                                
-                                                <div class="shadow card mb-3 w-100" id="tache{{ tache.id }}">
-                                                    <div class="card-header bg-black bg-gradient bg-opacity-50">
-                                                        
-                                                        {# Nom de la tâche #}
-                                                        <h5 class="text-light col-4">{{ tache|capitalize }}</h5>
+                                                <div class="cont col-12">
+                                                    <div class="shadow card" id="tache{{ tache.id }}">
+                                                        <div class="card-header bg-black bg-gradient bg-opacity-50">
+                                                            
+                                                            {# Nom de la tâche #}
+                                                            <h5 class="text-light col-4">{{ tache|capitalize }}</h5>
 
-                                                        {# select de l'état de la tâche #}
-                                                        <div class="form-floating col-6">
-                                                            <select class="form-select floatingSelect p-0" tache="{{ tache.id }}">
-                                                                {% for etat in etatListe %}
+                                                            {# select de l'état de la tâche #}
+                                                            <div class="form-floating col-6">
+                                                                <select class="form-select floatingSelect p-0 tache" tache="{{ tache.id }}">
+                                                                    {% for etat in etatListe %}
 
-                                                                    {# Test pour afficher l'etat sélectionné par l'utilisateur #}
-                                                                    {% if (tache.etat is same as(etat)) %}
-                                                                        <option value="{{ etat.id }}" selected>{{ etat }}</option>
-                                                                    {% else %}
-                                                                        <option value="{{ etat.id }}">{{ etat }}</option>
-                                                                    {% endif %}
+                                                                        {# Test pour afficher l'etat sélectionné par l'utilisateur #}
+                                                                        {% if (tache.etat is same as(etat)) %}
+                                                                            <option value="{{ etat.id }}" selected>{{ etat }}</option>
+                                                                        {% else %}
+                                                                            <option value="{{ etat.id }}">{{ etat }}</option>
+                                                                        {% endif %}
 
-                                                                {% endfor %}
-                                                            </select>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                            
                                                         </div>
-                                                        
+                                                        <div class="card-body">
+                                                            <h6 class="card-title"><strong>Attribué à : </strong>{{ tache.utilisateur }}</h6>
+                                                            <p class="card-text"><strong>Description : </strong>{{ tache.description }}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="card-body">
-                                                        <h6 class="card-title"><strong>Attribué à : </strong>{{ tache.utilisateur }}</h6>
-                                                        <p class="card-text"><strong>Description : </strong>{{ tache.description }}</p>
-                                                    </div>
+                                                    <img id="tache_img" src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="62" width="62">
                                                 </div>
                                             {% endif %}
                                         {% endfor %}

@@ -13,8 +13,16 @@ import './bootstrap';
 
 import './styles/app.css';
 
+import '../public/style/arrow.css';
+
+import '../public/style/spinner.css';
+
+import '../public/style/tache.css';
+
 import '../public/javascript/ajaxEtat.js';
 
 import '../public/javascript/arrow.js';
 
 import '../public/javascript/drag&drop.js';
+
+import '../public/javascript/spinner.js';
